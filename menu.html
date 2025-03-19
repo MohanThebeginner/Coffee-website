@@ -1,188 +1,743 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-		<script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
-		<script type="text/javascript">
-			window.tailwind.config = {
-				darkMode: ['class'],
-				theme: {
-					extend: {
-						colors: {
-							border: 'hsl(var(--border))',
-							input: 'hsl(var(--input))',
-							ring: 'hsl(var(--ring))',
-							background: 'hsl(var(--background))',
-							foreground: 'hsl(var(--foreground))',
-							primary: {
-								DEFAULT: 'hsl(var(--primary))',
-								foreground: 'hsl(var(--primary-foreground))'
-							},
-							secondary: {
-								DEFAULT: 'hsl(var(--secondary))',
-								foreground: 'hsl(var(--secondary-foreground))'
-							},
-							destructive: {
-								DEFAULT: 'hsl(var(--destructive))',
-								foreground: 'hsl(var(--destructive-foreground))'
-							},
-							muted: {
-								DEFAULT: 'hsl(var(--muted))',
-								foreground: 'hsl(var(--muted-foreground))'
-							},
-							accent: {
-								DEFAULT: 'hsl(var(--accent))',
-								foreground: 'hsl(var(--accent-foreground))'
-							},
-							popover: {
-								DEFAULT: 'hsl(var(--popover))',
-								foreground: 'hsl(var(--popover-foreground))'
-							},
-							card: {
-								DEFAULT: 'hsl(var(--card))',
-								foreground: 'hsl(var(--card-foreground))'
-							},
-						},
-					}
-				}
-			}
-		</script>
-		<style type="text/tailwindcss">
-			@layer base {
-				:root {
-					--background: 0 0% 100%;
---foreground: 240 10% 3.9%;
---card: 0 0% 100%;
---card-foreground: 240 10% 3.9%;
---popover: 0 0% 100%;
---popover-foreground: 240 10% 3.9%;
---primary: 240 5.9% 10%;
---primary-foreground: 0 0% 98%;
---secondary: 240 4.8% 95.9%;
---secondary-foreground: 240 5.9% 10%;
---muted: 240 4.8% 95.9%;
---muted-foreground: 240 3.8% 46.1%;
---accent: 240 4.8% 95.9%;
---accent-foreground: 240 5.9% 10%;
---destructive: 0 84.2% 60.2%;
---destructive-foreground: 0 0% 98%;
---border: 240 5.9% 90%;
---input: 240 5.9% 90%;
---ring: 240 5.9% 10%;
---radius: 0.5rem;
-				}
-				.dark {
-					--background: 240 10% 3.9%;
---foreground: 0 0% 98%;
---card: 240 10% 3.9%;
---card-foreground: 0 0% 98%;
---popover: 240 10% 3.9%;
---popover-foreground: 0 0% 98%;
---primary: 0 0% 98%;
---primary-foreground: 240 5.9% 10%;
---secondary: 240 3.7% 15.9%;
---secondary-foreground: 0 0% 98%;
---muted: 240 3.7% 15.9%;
---muted-foreground: 240 5% 64.9%;
---accent: 240 3.7% 15.9%;
---accent-foreground: 0 0% 98%;
---destructive: 0 62.8% 30.6%;
---destructive-foreground: 0 0% 98%;
---border: 240 3.7% 15.9%;
---input: 240 3.7% 15.9%;
---ring: 240 4.9% 83.9%;
-				}
-			}
-		</style>
-  </head>
-  <body>
+    <title>Sam Cafe- Menu</title>
+    <link rel="stylesheet" href="" class="script">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+  /* Colors */
+  --white-color: #fff;
+  --dark-color: #252525;
+  --primary-color: #21562e;
+  --secondary-color: #f3961c;
+  --light-pink-color: #faf4f5;
+  --medium-gray-color: #ccc;
+
+  /* Font size */
+  --font-size-s: 0.9rem;
+  --font-size-n: 1rem;
+  --font-size-m: 1.12rem;
+  --font-size-l: 1.5rem;
+  --font-size-xl: 2rem;
+  --font-size-xxl: 2.3rem;
+
+  /* Font weight */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Border radius */
+  --border-radius-s: 8px;
+  --border-radius-m: 30px;
+  --border-radius-circle: 50%;
+
+  /* Site max width */
+  --site-max-width: 1300px;
+}
+
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-to-cart:hover {
+            background-color: #3e8e41;
+        }
+        .remove{
+            background-color:red;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            
+
+        }
+        .remove:hover {
+            background-color: #3e8e41;
+        }
+        .footer-section {
+  padding: 20px 0;
+  background: var(--dark-color);
+}
+
+.footer-section .section-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-section :where(.copyright-text, .social-link, .policy-link) {
+  color: var(--white-color);
+  transition: 0.2s ease;
+}
+
+.footer-section .social-link-list {
+  display: flex;
+  gap: 25px;
+}
+
+.footer-section .social-link-list .social-link {
+  font-size: var(--font-size-l);
+}
+
+.footer-section .social-link-list .social-link:hover,
+.footer-section .policy-text .policy-link:hover {
+  color: var(--secondary-color);
+}
+
+.footer-section .policy-text .separator {
+  color: #fff;
+  margin: 0 5px;
+}
+    </style>
+</head>
+<nav class="navbar">
+   
+</nav>
+
+
+
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+            <a href="coffee.html" class="absolute top-6 left-6 cursor-pointer" aria-label="Home">
+                <img src="https://openui.fly.dev/openui/24x24.svg?text=🏠" aria-hidden="true" alt="Home">
+            </a>
+
+            <div class="w-full text-center mb-4 md:mb-0">
+                <h1 class="text-3xl font-bold text-brown-700">Sam Cafe</h1>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="checkout.html" class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path
+                            d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                    </svg>
+                    <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-1 text-xs">0</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                <div class="flex-grow">
+                    <input type="text" id="search-input" placeholder="Search menu items"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-500">
+                </div>
+
+                <div class="flex space-x-2 justify-center">
+                    <button class="px-4 py-2 bg-brown-600 text-white rounded-lg category-btn"
+                        data-category="all">All</button>
+                    <button class="px-4 py-2 bg-brown-600 text-white rounded-lg category-btn"
+                        data-category="hot">Hot</button>
+                    <button class="px-4 py-2 bg-brown-600 text-white rounded-lg category-btn"
+                        data-category="cold">Cold</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="hot"
+                data-name="Espresso" data-price="149">
+                <img src="images/es.jpg">
+                <h2 class="text-2xl font-bold mb-2">Espresso</h2>
+                <p>Rich and intense coffee shot</p>
+                
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-xl font-bold text-orange-600">₹149</span>
+                        <button class="remove">🗑️</button>
+                        <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                    </div>
+                
+            </div>
+
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="hot"
+                data-name="Cappuccino" data-price="169">
+                <img src="images/cappuccino.jpg">
+                <h2 class="text-2xl font-bold mb-2">Cappuccino</h2>
+                <p>Creamy espresso with steamed milk foam</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹169</span>
+                    <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="hot"
+                data-name="Cappuccino" data-price="169">
+                <img src="images/latte.jpg">
+                <h2 class="text-2xl font-bold mb-2">Caffe Latte</h2>
+                <p>Lorem ipsum dolor sit amet.
+                </p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹169</span>
+                    <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="hot"
+                data-name="Caffè Mocha" data-price="169">
+                <img src="images/caffee mocha.jpg">
+                <h2 class="text-2xl font-bold mb-2">Caffè Mocha</h2>
+                <p> The classic coffee drink to satisfy your sweet tooth.</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹169</span>
+                    <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="cold"
+                data-name=" Cold Cappuccino" data-price="169">
+                <img src="images/ice coffee.jpg">
+                <h2 class="text-2xl font-bold mb-2">Cold Cappuccino</h2>
+                <p>Signature Italian style Cappuccino with espresso shot, steamed milk and a thick layer of foam, served
+                    over ice.</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹169</span>
+                    <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="hot"
+                data-name="Cappuccino" data-price="169">
+                <img src="images/java frappe.jpg">
+                <h2 class="text-2xl font-bold mb-2">Java Frappe</h2>
+                <p>Creamy espresso with steamed milk foam</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹169</span>
+                   
+
+                    <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="hot"
+                data-name="Cappuccino" data-price="169">
+                <img src="images/vanilla.jpg">
+                <h2 class="text-2xl font-bold mb-2">Vanilla shake</h2>
+                <p>Creamy espresso with steamed milk foam</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹169</span>
+                    <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="hot"
+                data-name="Cappuccino" data-price="169">
+                <img src="images/straw.jpg">
+                <h2 class="text-2xl font-bold mb-2">Strawberry coffee</h2>
+                <p>Creamy espresso with steamed milk foam</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹169</span>
+                    <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="hot"
+                data-name="Cappuccino" data-price="169">
+                <img src="images/motcha.jpg">
+                <h2 class="text-2xl font-bold mb-2">Green Matcha</h2>
+                <p>We blend sweetened premium matcha green tea, milk and ice and top it with whipped vanilla topping to
+                    give you a delicious green tea. A coffee free delight.Creamy espresso with steamed milk foam</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹169</span> <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item bg-white rounded-xl shadow-lg p-6 text-center" data-category="cold"
+                data-name="Iced Tea" data-price="99">
+                <img src="images/cold coffee.jpg">
+                <h2 class="text-2xl font-bold mb-2">Iced Tea</h2>
+                <p>Refreshing blend of tea with ice</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-xl font-bold text-orange-600">₹99</span>
+                    <button class="remove">🗑️</button>
+                    <button class="add-to-cart px-4 py-2 bg-brown-600 text-white rounded-lg">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer section -->
+    <footer class="footer-section">
+        <div class="section-content">
+          <p class="copyright-text">© 2024 Coffee Shop</p>
+
+          <div class="social-link-list">
+            <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+
+          <p class="policy-text">
+            <a href="#" class="policy-link">Privacy policy</a>
+            <span class="separator">•</span>
+            <a href="#" class="policy-link">Refund policy</a>
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+//         // Cart functionality
+//         document.addEventListener('DOMContentLoaded', () => {
+//             const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//             const cartCount = document.getElementById('cart-count');
+//             const searchInput = document.getElementById('search-input');
+//             const categoryButtons = document.querySelectorAll('.category-btn');
+//             const menuItems = document.querySelectorAll('.menu-item');
+
+//             // Update cart count
+//             function updateCartCount() {
+//                 cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0 );
+//                 localStorage.setItem('cart', JSON.stringify(cart));
+//                 total,item 
+//             }
+
+//             // Add to cart functionality
+//             document.querySelectorAll('.add-to-cart').forEach(button => {
+//                 button.addEventListener('click', (e) => {
+//                     const item = e.target.closest('.menu-item');
+//                     const name = item.dataset.name;
+//                     const price = parseFloat(item.dataset.price);
+
+//                     // Check if item already in cart
+//                     const existingItem = cart.find(cartItem => cartItem.name === name);
+//                     if (existingItem) {
+//                         existingItem.quantity += 1;
+//                     } else {
+//                         cart.push({ name, price, quantity: 1 });
+//                     }
+
+//                     updateCartCount();
+
+//                     // Optional: Add visual feedback
+//                     button.textContent = 'Added!';
+//                     button.disabled = true;
+//                     setTimeout(() => {
+//                         button.textContent = 'Add to Cart';
+//                         button.disabled = false;
+//                     }, 1000);
+//                 });
+//             });
+
+//             // Search functionality
+//             searchInput.addEventListener('input', (e) => {
+//                 const searchTerm = e.target.value.toLowerCase();
+//                 menuItems.forEach(item => {
+//                     const itemName = item.dataset.name.toLowerCase();
+//                     item.style.display = itemName.includes(searchTerm) ? 'block' : 'none';
+//                 });
+//             });
+
+//             // Category filtering
+//             categoryButtons.forEach(button => {
+//                 button.addEventListener('click', (e) => {
+//                     const category = e.target.dataset.category;
+
+//                     categoryButtons.forEach(btn => btn.classList.remove('bg-orange-600'));
+//                     e.target.classList.add('bg-orange-600');
+
+//                     menuItems.forEach(item => {
+//                         if (category === 'all' || item.dataset.category === category) {
+//                             item.style.display = 'block';
+//                         } else {
+//                             item.style.display = 'none';
+//                         }
+//                     });
+//                 });
+//             });
+
+//             // Initial cart count update
+//             updateCartCount();
+//         });
+
+//         document.addEventListener('DOMContentLoaded', () => {
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     const cartCount = document.getElementById('cart-count');
+//     const searchInput = document.getElementById('search-input');
+//     const categoryButtons = document.querySelectorAll('.category-btn');
+//     const menuItems = document.querySelectorAll('.menu-item');
+
+//     // Update cart count
+//     function updateCartCount() {
+//         cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+//         localStorage.setItem('cart', JSON.stringify(cart));
+//     }
+
+//     // Add to cart functionality
+//     document.querySelectorAll('.remove').forEach(button => {
+//         button.addEventListener('click', (e) => {
+//             const item = e.target.closest('.menu-item');
+//             const name = item.dataset.name;
+//             const price = parseFloat(item.dataset.price);
+
+//             // Check if item already in cart
+//             const existingItem = cart.find(cartItem => cartItem.name === name);
+//             if (existingItem) {
+//                 existingItem.quantity 
+//                 -= 1;
+//             } else {
+//                 cart.push({ name, price, quantity: 1 });
+//             }
+
+//             updateCartCount();
+
+//             // Optional: Add visual feedback
+//             button.textContent = 'Removed!';
+//             button.disabled = true;
+//             setTimeout(() => {
+//                 button.textContent = '🗑️';
+//                 button.disabled = false;
+//             }, 1000);
+//         });
+//     });
+
+//     // Search functionality
+//     searchInput.addEventListener('input', (e) => {
+//         const searchTerm = e.target.value.toLowerCase();
+//         menuItems.forEach(item => {
+//             const itemName = item.dataset.name.toLowerCase();
+//             item.style.display = itemName.includes(searchTerm) ? 'block' : 'none';
+//         });
+//     });
+
+//     // Category filtering
+//     categoryButtons.forEach(button => {
+//         button.addEventListener('click', (e) => {
+//             const category = e.target.dataset.category;
+
+//             categoryButtons.forEach(btn => btn.classList.remove('bg-orange-600'));
+//             e.target.classList.add('bg-orange-600');
+
+//             menuItems.forEach(item => {
+//                 if (category === 'all' || item.dataset.category === category) {
+//                     item.style.display = 'block';
+//                 } else {
+//                     item.style.display = 'none';
+//                 }
+//             });
+//         });
+//     });
+
+//     // Initial cart count update
+//     updateCartCount();
+// });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     const cartCount = document.getElementById('cart-count');
+//     const searchInput = document.getElementById('search-input');
+//     const categoryButtons = document.querySelectorAll('.category-btn');
+//     const menuItems = document.querySelectorAll('.menu-item');
+
+//     // Update cart count
+//     function updateCartCount() {
+//         cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+//         localStorage.setItem('cart', JSON.stringify(cart));
+//     }
+
+//     // Add to cart functionality
+//     document.querySelectorAll('.remove').forEach(button => {
+//         button.addEventListener('click', (e) => {
+//             const item = e.target.closest('.menu-item');
+//             const name = item.dataset.name;
+//             const price = parseFloat(item.dataset.price);
+
+//             // Check if item already in cart
+//             const existingItem = cart.find(cartItem => cartItem.name === name);
+//             if (existingItem) {
+//                 // Decrease quantity only if it's greater than 1
+//                 if (existingItem.quantity > 1) {
+//                     existingItem.quantity -= 1;
+//                 } else {
+//                     // If quantity is 1, remove the item from the cart
+//                     const index = cart.indexOf(existingItem);
+//                     cart.splice(index, 1);
+//                 }
+//             } else {
+//                 cart.push({ name, price, quantity: 1 });
+//             }
+
+//             updateCartCount();
+
+//             // Optional: Add visual feedback
+//             button.textContent = 'Removed!';
+//             button.disabled = true;
+//             setTimeout(() => {
+//                 button.textContent = '🗑️';
+//                 button.disabled = false;
+//             }, 100);
+//         });
+//     });
+
+//     // Search functionality
+//     searchInput.addEventListener('input', (e) => {
+//         const searchTerm = e.target.value.toLowerCase();
+//         menuItems.forEach(item => {
+//             const itemName = item.dataset.name.toLowerCase();
+//             item.style.display = itemName.includes(searchTerm) ? 'block' : 'none';
+//         });
+//     });
+
+//     // Category filtering
+//     categoryButtons.forEach(button => {
+//         button.addEventListener('click', (e) => {
+//             const category = e.target.dataset.category;
+
+//             categoryButtons.forEach(btn => btn.classList.remove('bg-orange-600'));
+//             e.target.classList.add('bg-orange-600');
+
+//             menuItems.forEach(item => {
+//                 if (category === 'all' || item.dataset.category === category) {
+//                     item.style.display = 'block';
+//                 } else {
+//                     item.style.display = 'none';
+//                 }
+//             });
+//         });
+//     });
+
+//     // Initial cart count update
+//     updateCartCount();
+// });
+// document.addEventListener('DOMContentLoaded', () => {
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     const cartCount = document.getElementById('cart-count');
+//     const searchInput = document.getElementById('search-input');
+//     const categoryButtons = document.querySelectorAll('.category-btn');
+//     const menuItems = document.querySelectorAll('.menu-item');
+
+//     // Update cart count and display
+//     function updateCartCount() {
+//         cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+//         localStorage.setItem('cart', JSON.stringify(cart));
+//     }
+
+//     // Add item to cart
+//     document.querySelectorAll('.add-to-cart').forEach(button => {
+//         button.addEventListener('click', (e) => {
+//             const item = e.target.closest('.menu-item');
+//             const name = item.dataset.name;
+//             const price = parseFloat(item.dataset.price);
+
+//             // Check if cart is empty, show a message if empty
+//             if (cart.length === 0) {
+                
+//             }
+
+//             // Check if item already in cart
+//             const existingItem = cart.find(cartItem => cartItem.name === name);
+//             if (existingItem) {
+//                 existingItem.quantity += 1; // Increase quantity if item already in cart
+//             } else {
+//                 cart.push({ name, price, quantity: 1 }); // Add item to cart
+//             }
+
+//             updateCartCount();
+
+//             // Optional: Visual feedback
+//             button.textContent = 'Added!';
+//             button.disabled = true;
+//             setTimeout(() => {
+//                 button.textContent = 'Add to Cart';
+//                 button.disabled = false;
+//             }, 1000);
+//         });
+//     });
     
 
-<div class="container mx-auto p-6 relative">
-  <a href="index.html#" aria-label="Home">
-    <img aria-hidden="true" alt="home-icon" src="https://openui.fly.dev/openui/24x24.svg?text=🏠" class="absolute top-6 left-6 cursor-pointer" />
-  </a>
-  <h1 class="text-4xl font-bold mb-6 text-center">Our Menu</h1>
-  <input type="text" placeholder="Search menu..." class="border border-border rounded-lg p-3 mb-6 w-full shadow-md focus:outline-none focus:ring-2 focus:ring-primary search-bar" />
+//     // Remove item from cart
+//     document.querySelectorAll('.remove').forEach(button => {
+//         button.addEventListener('click', (e) => {
+//             if (cart.length === 0) {
+//                 alert('Your cart is empty, you cannot remove any items!');
+//                 return;
+//             }
 
-  <div class="flex justify-center space-x-4 mb-6">
-    <button class="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-6 py-2 rounded-lg filter-btn" data-category="all">All Items</button>
-    <button class="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-6 py-2 rounded-lg filter-btn" data-category="hot">Hot Beverages</button>
-    <button class="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-6 py-2 rounded-lg filter-btn" data-category="cold">Cold Beverages</button>
-    <button class="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-6 py-2 rounded-lg filter-btn" data-category="refreshments">Refreshments</button>
-    <button class="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-6 py-2 rounded-lg filter-btn" data-category="combos">Special Combos</button>
-  </div>
-  <div class="space-y-4 menu-items">
-    <div class="bg-card p-4 rounded-lg shadow-lg menu-item" data-category="hot">
-      <h2 class="text-2xl font-semibold">Espresso</h2>
-      <p class="text-muted-foreground">Rich and intense coffee shot</p>
-      <div class="flex justify-between items-center">
-        <span class="text-lg font-bold">₹149</span>
-        <button class="bg-accent text-accent-foreground hover:bg-accent/80 px-4 py-2 rounded-lg add-to-cart-btn">Add to Cart</button>
-      </div>
-    </div>
+//             const item = e.target.closest('.menu-item');
+//             const name = item.dataset.name;
 
-    <div class="bg-card p-4 rounded-lg shadow-lg menu-item" data-category="hot">
-      <h2 class="text-2xl font-semibold">Cappuccino</h2>
-      <p class="text-muted-foreground">Creamy espresso with steamed milk foam</p>
-      <div class="flex justify-between items-center">
-        <span class="text-lg font-bold">₹169</span>
-        <button class="bg-accent text-accent-foreground hover:bg-accent/80 px-4 py-2 rounded-lg add-to-cart-btn">Add to Cart</button>
-      </div>
-    </div>
+//             // Find the item in the cart
+//             const existingItemIndex = cart.findIndex(cartItem => cartItem.name === name);
+//             if (existingItemIndex !== -1) {
+//                 const existingItem = cart[existingItemIndex];
 
-    <div class="bg-card p-4 rounded-lg shadow-lg menu-item" data-category="cold">
-      <h2 class="text-2xl font-semibold">Iced Tea</h2>
-      <p class="text-muted-foreground">Refreshing blend of tea with ice</p>
-      <div class="flex justify-between items-center">
-        <span class="text-lg font-bold">₹99</span>
-        <button class="bg-accent text-accent-foreground hover:bg-accent/80 px-4 py-2 rounded-lg add-to-cart-btn">Add to Cart</button>
-      </div>
-    </div>
-  </div>
+//                 // If quantity is greater than 1, decrease the quantity
+//                 if (existingItem.quantity > 1) {
+//                     existingItem.quantity -= 1;
+//                 } else {
+//                     // If quantity is 1, remove the item from the cart
+//                     cart.splice(existingItemIndex, 1);
+//                 }
 
-  <button class="bg-primary text-primary-foreground hover:bg-primary/80 px-6 py-2 rounded-lg absolute top-6 right-6">Checkout</button>
-</div>
+//                 updateCartCount();
 
-<script src="script.js"></script>
-<script type="text/javascript">
-  // Add any interactive functionality here
-  document.addEventListener('DOMContentLoaded', () => {
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const menuItems = document.querySelectorAll('.menu-item');
-      const searchBar = document.querySelector('.search-bar');
+//                 // Optional: Visual feedback
+//                 button.textContent = 'Removed!';
+//                 button.disabled = true;
+//                 setTimeout(() => {
+//                     button.textContent = '🗑️';
+//                     button.disabled = false;
+//                 }, 1000);
+//             }
+//         });
+//     });
 
-      filterButtons.forEach(button => {
-          button.addEventListener('click', () => {
-              const category = button.dataset.category;
-              menuItems.forEach(item => {
-                  if (category === 'all' || item.dataset.category === category) {
-                      item.style.display = 'block';
-                  } else {
-                      item.style.display = 'none';
-                  }
-              });
-              filterButtons.forEach(btn => {
-                  btn.classList.remove('font-bold', 'text-black');
-              });
-              button.classList.add('font-bold', 'text-black');
-          });
-      });
-      searchBar.addEventListener('input', () => {
-          const searchTerm = searchBar.value.toLowerCase();
-          menuItems.forEach(item => {
-              const itemName = item.querySelector('h2').innerText.toLowerCase();
-              if (itemName.includes(searchTerm)) {
-                  item.style.display = 'block';
-              } else {
-                  item.style.display = 'none';
-              }
-          });
-      });
-  });
-</script>
+//     // Search functionality
+//     searchInput.addEventListener('input', (e) => {
+//         const searchTerm = e.target.value.toLowerCase();
+//         menuItems.forEach(item => {
+//             const itemName = item.dataset.name.toLowerCase();
+//             item.style.display = itemName.includes(searchTerm) ? 'block' : 'none';
+//         });
+//     });
+
+//     // Category filtering
+//     categoryButtons.forEach(button => {
+//         button.addEventListener('click', (e) => {
+//             const category = e.target.dataset.category;
+
+//             // Highlight selected category button
+//             categoryButtons.forEach(btn => btn.classList.remove('bg-orange-600'));
+//             e.target.classList.add('bg-orange-600');
+
+//             // Show/hide menu items based on category
+//             menuItems.forEach(item => {
+//                 if (category === 'all' || item.dataset.category === category) {
+//                     item.style.display = 'block';
+//                 } else {
+//                     item.style.display = 'none';
+//                 }
+//             });
+//         });
+//     });
+
+//     // Initial cart count update
+//     updateCartCount();
+// });
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = document.getElementById('cart-count');
+    const searchInput = document.getElementById('search-input');
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    // Update cart count and display
+    function updateCartCount() {
+        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // Add item to cart
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const item = e.target.closest('.menu-item');
+            const name = item.dataset.name;
+            const price = parseFloat(item.dataset.price);
+
+            // Check if item already in cart
+            const existingItem = cart.find(cartItem => cartItem.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1; // Increase quantity if item already in cart
+            } else {
+                cart.push({ name, price, quantity: 1 }); // Add item to cart
+            }
+
+            updateCartCount();
+
+            // Optional: Visual feedback
+            button.textContent = 'Added!';
+            button.disabled = true;
+            setTimeout(() => {
+                button.textContent = 'Add to Cart';
+                button.disabled = false;
+            }, 1000);
+        });
+    });
+
+    // Remove item from cart
+    document.querySelectorAll('.remove').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const item = e.target.closest('.menu-item');
+            const name = item.dataset.name;
+            if (cart.length === 0) {
+              alert('Your cart is empty, you cannot remove any items!');
+              return;
+            }
 
 
-  </body>
+            // Find the item in the cart
+            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === name);
+            if (existingItemIndex !== -1) {
+                const existingItem = cart[existingItemIndex];
+
+                // If quantity is greater than 1, decrease the quantity
+                if (existingItem.quantity > 1) {
+                    existingItem.quantity -= 1;
+                } else if (existingItem.quantity === 1) {
+                    // If quantity is 1, remove the item from the cart
+                    cart.splice(existingItemIndex, 1);
+                }
+
+                updateCartCount();
+
+                // Optional: Visual feedback
+                button.textContent = 'Removed!';
+                button.disabled = true;
+                setTimeout(() => {
+                    button.textContent = '🗑️';
+                    button.disabled = false;
+                }, 1000);
+            }
+        });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        menuItems.forEach(item => {
+            const itemName = item.dataset.name.toLowerCase();
+            item.style.display = itemName.includes(searchTerm) ? 'block' : 'none';
+        });
+    });
+
+    // Category filtering
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const category = e.target.dataset.category;
+
+            // Highlight selected category button
+            categoryButtons.forEach(btn => btn.classList.remove('bg-orange-600'));
+            e.target.classList.add('bg-orange-600');
+
+            // Show/hide menu items based on category
+            menuItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Initial cart count update
+    updateCartCount();
+});
+
+    </script>
+</body>
+
 </html>
